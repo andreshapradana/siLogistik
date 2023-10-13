@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Home</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <!-- Content -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="fw-bold">Detail Gudang</h2>
+                        <a th:href="@{/gudang/{id}/restock-barang(id=${readGudangDTO.idGudang})}" class="btn btn-primary">+ Restock Barang</a>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Nama Gudang</h6>
+                            <p th:text="${readGudangDTO.namaGudang}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Alamat Gudang</h6>
+                            <p th:text="${readGudangDTO.alamatGudang}"></p>
+                        </div>
+                        <div th:if="${readGudangDTO.stok.size() != 0}">
+                        <h3 class="card-title">Daftar Barang Tersedia</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>No</th>
+                                        <th>SKU</th>
+                                        <th>Merk</th>
+                                        <th>Stok</th>
+                                        <th>Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="entry, iterationStatus: ${readGudangDTO.stok}">
+                                        <td th:text="${iterationStatus.index+1}" class="py-3"></td>
+                                        <td class="py-3">
+                                            <a th:href="@{/barang/{idBarang}(idBarang=${entry.key.sku})}" style="text-decoration: none;">
+                                                <h6 th:text="${entry.key.sku}" class="text-info"></h6>
+                                            </a>
+                                        </td>
+                                        <td th:text="${entry.key.merk}" class="py-3"></td>
+                                        <td th:text="${entry.value}" class="py-3"></td>
+                                        <td th:text="${entry.key.hargaBarang}" class="py-3"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    <div th:unless="${readGudangDTO.stok.size() != 0}">
+                        <h3 class="card-title mt-3">Tidak Ada Barang Tersedia</h3>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/gudang" class="btn btn-secondary">Kembali</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

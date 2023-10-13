@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <<meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>tambah barang</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+   
+    <div class="container mt-5">
+        <h2>Tambah Barang</h2>
+        <form th:action="@{/barang/tambah}" th:object="${barangDTO}" method="post">
+            
+            Merk Barang: <br>
+            <input class="form-control" type="text" th:field="*{merk}" />
+            <br><br>
+
+            <!-- Dropdown untuk Tipe Barang -->
+            Tipe Barang: <br>
+            <select th:field="*{tipeBarang}" class="form-select">
+                 <!-- Isi dropdown dengan opsi-opsi tipe barang -->
+                <option th:value="1">Produk Elektronik</option>
+                <option th:value="2">Pakaian & Aksesoris</option>
+                <option th:value="3">Makanan & Minuman</option>
+                <option th:value="4">Kosmetik</option>
+                <option th:value="5">Perlengkapan Rumah</option>
+            </select>
+            <br><br>
+            
+            <!-- Input untuk Harga Barang -->
+            Harga: <br>
+            <input required class="form-control" type="number" th:field="*{hargaBarang}" />
+            <br><br>
+
+            <!-- Tombol Submit -->
+            <button class="btn btn-primary" type="submit">Submit</button>
+            <a class="btn btn-primary" href="/">Home</a>
+        </form>
+    </div>
+
+</body>
+
+</html>

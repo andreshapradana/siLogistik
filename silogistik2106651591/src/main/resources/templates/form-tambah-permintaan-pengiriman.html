@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <<meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Tambah permintaan pengiriman</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+   
+    <div class="container mt-5">
+        <h2>Buat Permintaan Pengiriman</h2>
+        <form th:action="@{/permintaan-pengiriman/tambah}" th:object="${permintaanPengirimanDTO}" method="POST">
+            
+            <div class="mx-4" style="width: 50%;">
+                Karyawan Bertugas: <br>
+                <select th:field="*{karyawan}" class="form-select">
+                        <option value="-1" hidden>Pilih Karyawan</option>
+                        <option th:each="karyawanTersedia : ${daftarKaryawanTersedia}"
+                        th:value="${karyawanTersedia.idKaryawan}" th:text="${karyawanTersedia.namaKaryawan}"></option>
+                </select>
+                <br><br>
+                
+                Nama Penerima: <br>
+                <input class="form-control" type="text" th:field="*{namaPenerima}" />
+                <br><br>
+
+                Alamat Penerima: <br>
+                <input class="form-control" type="text" th:field="*{alamatPenerima}" />
+                <br><br>
+            </div>
+            <div style="width: 50%; margin-right: 2%;">
+                Tanggal Pengiriman: <br>
+                <input class="form-control" type="date" th:field="*{tanggalPengirimanString}" />
+                <br><br>
+
+                Jenis Layanan: <br>
+                <select th:field="*{jenisLayanan}" class="form-select">
+                    <option value="0" selected disabled hidden>Jenis Layanan</option>
+                    <option th:value="1">Same Day</option>
+                    <option th:value="2">Kilat</option>
+                    <option th:value="3">Reguler</option>
+                    <option th:value="4">Hemat</option>
+                </select>
+                <br><br>
+
+                Biaya Pengiriman: <br>
+                <input class="form-control" type="number" th:field="*{biayaPengiriman}" />
+                <br><br>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit" name="addRow" style="text-align: right;">+ Tambah Barang</button>
+            </div>
+            <div class="justify-content-center mt-4">
+                <table class="table table-bordered text-center" th:if="${permintaanPengirimanDTO.listPermintaanPengirimanBarang} != null">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="py-3">#</th>
+                            <th class="py-3">Barang</th>
+                            <th class="py-3">Kuantitas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="permintaanPengirimanBarang, iterationStatus: *{listPermintaanPengirimanBarang}">
+                            <td th:text="${iterationStatus.index+1}" class="py-3"></td>
+                            <td class="py-3">
+                                <select th:field="*{listPermintaanPengirimanBarang[__${iterationStatus.index}__].barang.sku}" class="form-select">
+                                    <div th:each="barangTersedia : ${daftarBarangTersedia}">
+                                    <option th:value="${barangTersedia.sku}" th:text="${barangTersedia.merk}"></option>
+                                    </div>
+                                </select>
+                            </td>
+                            <td class="py-3">
+                                <input class="form-control" type="number" min="1" step="1"
+                                th:field="*{listPermintaanPengirimanBarang[__${iterationStatus.index}__].kuantitasPengiriman}">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-center">
+                <a href="/permintaan-pengiriman" class="btn btn-danger" style="margin-inline-end: 20px;">Batal</a>
+                <button class="btn btn-primary" type="submit">Simpan</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

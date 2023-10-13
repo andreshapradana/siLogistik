@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Home</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <!-- Content -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="fw-bold">Detail Barang</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Merk</h6>
+                            <p th:text="${readBarangDTO.merk}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">SKU</h6>
+                            <p th:text="${readBarangDTO.sku}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Tipe Barang</h6>
+                            <p th:text="${readBarangDTO.tipeBarang}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Total Stok</h6>
+                            <p th:text="${readBarangDTO.stok}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Harga</h6>
+                            <p th:text="${readBarangDTO.hargaBarang}"></p>
+                        </div>
+                        <div th:if="${readBarangDTO.stok != 0}">
+                        <h3 class="card-title">Daftar Gudang</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nama Gudang</th>
+                                        <th>Alamat Gudang</th>
+                                        <th>Stok</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="gudangBarang, iterationStatus: ${readBarangDTO.listGudangBarang}">
+                                        <td th:text="${iterationStatus.index+1}" class="py-3"></td>
+                                        <td class="py-3">
+                                            <a th:href="@{/gudang/{id}(id=${gudangBarang.gudang.idGudang})}" style="text-decoration: none;">
+                                                <h6 th:text="${gudangBarang.gudang.namaGudang}" class="text-info"></h6>
+                                            </a>
+                                        </td>
+                                        <td th:text="${gudangBarang.gudang.alamatGudang}" class="py-3"></td>
+                                        <td th:text="${gudangBarang.stok}" class="py-3"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    <div th:unless="${readBarangDTO.stok != 0}">
+                        <h3 class="card-title mt-3">Tidak Ada Gudang Tersedia</h3>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a th:href="@{/barang/{id}/ubah(id=${readBarangDTO.sku})}" class="btn btn-primary">Ubah Barang</a>
+                        <a href="/gudang" class="btn btn-secondary">Kembali</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

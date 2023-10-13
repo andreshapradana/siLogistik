@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Home</title>
+</head>
+
+<body>
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <div class="container text-center mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-3">
+                <img src="https://cdn.discordapp.com/attachments/939863114667679765/1158608435173150740/4363531.png?ex=651e2f30&is=651cddb0&hm=35124506b2a8573cb0407a7607b7075d999eec740d60d60b1b97bfe4e5ad47d4&" class="w-50" alt="logo">
+                <h2>SILOGISTIK</h2>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-3">
+                <div class="card bg-primary">
+                    <div class="card-body text-white">
+                        <div class="row text-center px-1">
+                            <p class="card-subtitle my-1 text-white">Gudang</p>
+                            <h1 class="card-title fw-bold text-white" style="font-size: 60px;" th:text="${jumlahGudang}"></h1>
+                            <p class="card-subtitle my-1 text-white">gudang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-primary">
+                    <div class="card-body text-white">
+                        <div class="row text-center px-1">
+                            <p class="card-subtitle my-1 text-white">Barang</p>
+                            <h1 class="card-title fw-bold text-white" style="font-size: 60px;" th:text="${jumlahBarang}"></h1>
+                            <p class="card-subtitle my-1 text-white">barang</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-primary">
+                    <div class="card-body text-white">
+                        <div class="row text-center px-1">
+                            <p class="card-subtitle my-1 text-white">Permintaan Pengiriman</p>
+                            <h1 class="card-title fw-bold text-white" style="font-size: 60px;" th:text="${jumlahPermintaanPengiriman}"></h1>
+                            <p class="card-subtitle my-1 text-white">permintaan pengiriman</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card bg-primary">
+                    <div class="card-body text-white">
+                        <div class="row text-center px-1">
+                            <p class="card-subtitle my-1 text-white">Karyawan</p>
+                            <h1 class="card-title fw-bold text-white" style="font-size: 60px;" th:text="${jumlahKaryawan}"></h1>
+                            <p class="card-subtitle my-1 text-white">karyawan</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

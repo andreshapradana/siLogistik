@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
+    <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
+    <title>Detail Permintaan Pengiriman</title>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav th:replace="~{fragments/navbar :: navbar}"></nav>
+    <!-- Content -->
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between align-items-center">
+                        <h2 class="fw-bold">Detail Permintaan Pengiriman</h2>
+                        <a th:href="@{/permintaan-pengiriman/{id}/cancel(id=*{permintaanPengirimanDTO.idPermintaanPengiriman})}" class="btn btn-md btn-danger">Cancel Permintaan</a>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <h6 class="fw-bold">No. Permintaan Pengiriman: </h6>
+                            <p th:text="${permintaanPengirimanDTO.nomorPengiriman}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Waktu Permintaan: </h6>
+                            <p th:text="${permintaanPengirimanDTO.waktuPermintaan}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Karyawan Bertugas: </h6>
+                            <p th:text="${permintaanPengirimanDTO.namaKaryawan}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Waktu Pengiriman: </h6>
+                            <p th:text="${permintaanPengirimanDTO.tanggalPengiriman}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Nama Penerima: </h6>
+                            <p th:text="${permintaanPengirimanDTO.namaPenerima}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Alamat Penerima: </h6>
+                            <p th:text="${permintaanPengirimanDTO.alamatPenerima}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Jenis Layanan: </h6>
+                            <p th:text="${permintaanPengirimanDTO.jenisLayanan}"></p>
+                        </div>
+                        <div class="mb-3">
+                            <h6 class="fw-bold">Biaya Pengiriman: </h6>
+                            <p th:text="'Rp' + ${permintaanPengirimanDTO.biayaPengiriman}"></p>
+                        </div>
+                        <div th:if="${permintaanPengirimanDTO.listPermintaanPengirimanBarang.size() > 0}">
+                        <h3 class="card-title">Daftar Barang Dipesan</h3>
+                        <div class="table-responsive">
+                            <table class="table table-bordered text-center">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>SKU</th>
+                                        <th>Merk</th>
+                                        <th>Kuantitas Pesanan</th>
+                                        <th>Harga</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="permintaanPengirimanBarang, iterationStatus: ${permintaanPengirimanDTO.listPermintaanPengirimanBarang}">
+                                        <td th:text="${iterationStatus.index+1}" class="py-3"></td>
+                                        <td class="py-3">
+                                            <a th:href="@{/barang/{id}(id=${permintaanPengirimanBarang.barang.sku})}" style="text-decoration: none;">
+                                                <h6 th:text="${permintaanPengirimanBarang.barang.sku}" class="text-info"></h6>
+                                            </a>
+                                        </td>
+                                        <td th:text="${permintaanPengirimanBarang.barang.merk}" class="py-3"></td>
+                                        <td th:text="${permintaanPengirimanBarang.kuantitasPengiriman}" class="py-3"></td>
+                                        <td th:text="${permintaanPengirimanDTO.listTotalHarga[__${iterationStatus.index}__]}" class="py-3"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        </div>
+                    </div>
+                    <div th:unless="${permintaanPengirimanDTO.listPermintaanPengirimanBarang.size() != 0}">
+                        <h3 class="card-title mt-3">Tidak Ada Barang Yang Dikirim</h3>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/permintaan-pengiriman" class="btn btn-secondary">Kembali</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
