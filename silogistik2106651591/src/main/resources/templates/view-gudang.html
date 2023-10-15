@@ -50,7 +50,7 @@
                                         </td>
                                         <td th:text="${entry.key.merk}" class="py-3"></td>
                                         <td th:text="${entry.value}" class="py-3"></td>
-                                        <td th:text="${entry.key.hargaBarang}" class="py-3"></td>
+                                        <td th:text="'Rp' + ${entry.key.hargaBarang}" class="py-3"></td>
                                     </tr>
                                 </tbody>
                             </table>

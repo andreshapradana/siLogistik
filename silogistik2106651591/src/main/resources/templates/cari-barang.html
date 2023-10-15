@@ -37,7 +37,7 @@
                         <th class="py-3">Stok</th>
                     </tr>
                 </thead>
-                <tbody class="fw-bold">
+                <tbody>
                     <tr th:each="gudangBarangDTO, iterationStatus: ${listGudangBarangDTO}">
                         <td th:text="${iterationStatus.index+1}" class="py-3"></td>
                         <td class="py-3">
@@ -52,7 +52,7 @@
             </table>
         </div>
         <div class="text-center m-2" th:if="${listGudangBarangDTO != null} and ${listGudangBarangDTO.size() == 0}">
-            <h2>Belum Ada Gudang Yang Memiliki Barang Ini</h2>
+            <h2 th:text="'Tidak ada gudang yang memuat barang ' + ${barangSelected.merk}"></h2>
         </div>
     </div>
 </body>

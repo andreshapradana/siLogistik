@@ -2,7 +2,7 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
 
 <head>
-    <<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <object th:include="~{fragments/common :: js}" th:remove="tag"></object>
     <object th:include="~{fragments/common :: css}" th:remove="tag"></object>
     <title>Tambah permintaan pengiriman</title>
@@ -12,44 +12,44 @@
     <nav th:replace="~{fragments/navbar :: navbar}"></nav>
    
     <div class="container mt-5">
-        <h2>Buat Permintaan Pengiriman</h2>
+        <h2 class="text-center">Buat Permintaan Pengiriman</h2>
         <form th:action="@{/permintaan-pengiriman/tambah}" th:object="${permintaanPengirimanDTO}" method="POST">
             
-            <div class="mx-4" style="width: 50%;">
-                Karyawan Bertugas: <br>
-                <select th:field="*{karyawan}" class="form-select">
+            <div class="flex-container">
+                <div class="flex-item">
+                    Karyawan Bertugas: <br>
+                    <select th:field="*{karyawan}" class="form-select">
                         <option value="-1" hidden>Pilih Karyawan</option>
                         <option th:each="karyawanTersedia : ${daftarKaryawanTersedia}"
                         th:value="${karyawanTersedia.idKaryawan}" th:text="${karyawanTersedia.namaKaryawan}"></option>
-                </select>
-                <br><br>
-                
-                Nama Penerima: <br>
-                <input class="form-control" type="text" th:field="*{namaPenerima}" />
-                <br><br>
-
-                Alamat Penerima: <br>
-                <input class="form-control" type="text" th:field="*{alamatPenerima}" />
-                <br><br>
-            </div>
-            <div style="width: 50%; margin-right: 2%;">
-                Tanggal Pengiriman: <br>
-                <input class="form-control" type="date" th:field="*{tanggalPengirimanString}" />
-                <br><br>
-
-                Jenis Layanan: <br>
-                <select th:field="*{jenisLayanan}" class="form-select">
-                    <option value="0" selected disabled hidden>Jenis Layanan</option>
-                    <option th:value="1">Same Day</option>
-                    <option th:value="2">Kilat</option>
-                    <option th:value="3">Reguler</option>
-                    <option th:value="4">Hemat</option>
-                </select>
-                <br><br>
-
-                Biaya Pengiriman: <br>
-                <input class="form-control" type="number" th:field="*{biayaPengiriman}" />
-                <br><br>
+                    </select>
+                </div>
+                <div class="flex-item">
+                    Tanggal Pengiriman: <br>
+                    <input class="form-control" type="date" th:field="*{tanggalPengirimanString}" />
+                </div>
+                <div class="flex-item">
+                    Nama Penerima: <br>
+                    <input class="form-control" type="text" th:field="*{namaPenerima}" />
+                </div>
+                <div class="flex-item">
+                    Jenis Layanan: <br>
+                    <select th:field="*{jenisLayanan}" class="form-select">
+                        <option value="0" selected disabled hidden>Jenis Layanan</option>
+                        <option th:value="1">Same Day</option>
+                        <option th:value="2">Kilat</option>
+                        <option th:value="3">Reguler</option>
+                        <option th:value="4">Hemat</option>
+                    </select>
+                </div>
+                <div class="flex-item">
+                    Alamat Penerima: <br>
+                    <input class="form-control" type="text" th:field="*{alamatPenerima}" />
+                </div>
+                <div class="flex-item">
+                    Biaya Pengiriman: <br>
+                    <input class="form-control" type="number" th:field="*{biayaPengiriman}" />
+                </div>
             </div>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary" type="submit" name="addRow" style="text-align: right;">+ Tambah Barang</button>

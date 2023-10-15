@@ -16,27 +16,28 @@
                 <div class="card">
                     <div class="card-header d-flex justify-content-between align-items-center">
                         <h2 class="fw-bold">Detail Barang</h2>
+                        <a th:href="@{/barang/{id}/ubah(id=${readBarangDTO.sku})}" class="btn btn-primary">Ubah Barang</a>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
-                            <h6 class="fw-bold">Merk</h6>
-                            <p th:text="${readBarangDTO.merk}"></p>
+                            <span>Merk: </span>
+                            <span th:text="${readBarangDTO.merk}"></span>
                         </div>
                         <div class="mb-3">
-                            <h6 class="fw-bold">SKU</h6>
-                            <p th:text="${readBarangDTO.sku}"></p>
+                            <span>SKU: </span>
+                            <span th:text="${readBarangDTO.sku}"></span>
                         </div>
                         <div class="mb-3">
-                            <h6 class="fw-bold">Tipe Barang</h6>
-                            <p th:text="${readBarangDTO.tipeBarang}"></p>
+                            <span>Tipe Barang: </span>
+                            <span th:text="${readBarangDTO.tipeBarang}"></span>
                         </div>
                         <div class="mb-3">
-                            <h6 class="fw-bold">Total Stok</h6>
-                            <p th:text="${readBarangDTO.stok}"></p>
+                            <span>Total Stok: </span>
+                            <span th:text="${readBarangDTO.stok}"></span>
                         </div>
                         <div class="mb-3">
-                            <h6 class="fw-bold">Harga</h6>
-                            <p th:text="${readBarangDTO.hargaBarang}"></p>
+                            <span>Harga: </span>
+                            <span th:text="${readBarangDTO.hargaBarang}"></span>
                         </div>
                         <div th:if="${readBarangDTO.stok != 0}">
                         <h3 class="card-title">Daftar Gudang</h3>
@@ -70,8 +71,7 @@
                         <h3 class="card-title mt-3">Tidak Ada Gudang Tersedia</h3>
                     </div>
                     <div class="card-footer text-center">
-                        <a th:href="@{/barang/{id}/ubah(id=${readBarangDTO.sku})}" class="btn btn-primary">Ubah Barang</a>
-                        <a href="/gudang" class="btn btn-secondary">Kembali</a>
+                        <a href="/barang" class="btn btn-secondary">Kembali</a>
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
     <div class="card m-4 p-4">
       <div class="card-body">
         <div class="justify-content-center">
-          <h2>Ubah Barang</h2>
+          <h2 class="text-center">Ubah Barang</h2>
           <br>
           <form th:action="@{/barang/{idBarang}/ubah(idBarang=${barangDTO.sku})}" th:object="${barangDTO}" method="POST">
 
@@ -40,9 +40,10 @@
             Harga: <br>
             <input required class="form-control" type="number" th:field="*{hargaBarang}" />
             <br><br>
-
-            <button class="btn btn-primary" type="submit">Submit</button>
-            <a class="btn btn-primary" href="/">Home</a>
+            <div class="text-center">
+            <button class="btn btn-primary" type="submit">Simpan</button>
+            <a class="btn btn-danger" href="/barang">Batal</a>
+          </div>
           </form>
         </div>
       </div>

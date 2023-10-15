@@ -17,11 +17,11 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class CreateBarangRequestDTO {
-    @NotBlank
+    @NotBlank(message = "Merk Barang tidak boleh kosong")
     private String merk;
 
-    @Min(value=1)
-    @Max(value=5)
+    @Min(value=1, message = "Pilih tipe barang sesuai dengan yang tersedia")
+    @Max(value=5, message = "Pilih tipe barang sesuai dengan yang tersedia")
     private int tipeBarang;
 
     @Min(0L)
