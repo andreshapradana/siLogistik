@@ -17,11 +17,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CreatePermintaanPengirimanRequestDTO {
+    @NotNull(message = "Karyawan tidak boleh kosong")
     private Karyawan karyawan;
+    @NotBlank(message = "Nama Penerima tidak boleh kosong")
     private String namaPenerima;
+    @NotBlank(message = "Alamat Penerima tidak boleh kosong")
     private String alamatPenerima;
+    @NotBlank(message = "Tanggal Pengiriman tidak boleh kosong")
     private String tanggalPengirimanString;
     private int jenisLayanan;
+    @Min(0L)
     private int biayaPengiriman;
+    @NotNull(message = "Barang untuk dikirim tidak boleh kosong")
     List<PermintaanPengirimanBarang> listPermintaanPengirimanBarang;
 }

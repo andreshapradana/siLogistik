@@ -125,7 +125,7 @@ public class PermintaanPengirimanController {
 
     @GetMapping("permintaan-pengiriman/{id}/cancel")
     public String cancelPermintaanPengiriman(@PathVariable("id") Long id, Model model) {
-         var permintaanPengiriman = permintaanPengirimanService.getPermintaanPengirimanById(id);
+        var permintaanPengiriman = permintaanPengirimanService.getPermintaanPengirimanById(id);
         LocalDateTime waktuPermintaan = permintaanPengiriman.getWaktuPermintaan();
         LocalDateTime now = LocalDateTime.now();
 
@@ -134,7 +134,7 @@ public class PermintaanPengirimanController {
         model.addAttribute("nomorPengiriman", permintaanPengiriman.getNomorPengiriman());
         model.addAttribute("activePage", 3);
         if(hours < 24) {
-            permintaanPengirimanService.deletePermintaanPengiriman(permintaanPengiriman);
+            permintaanPengirimanService.cancelPermintaanPengiriman(permintaanPengiriman);
             return "success-cancel-permintaan-pengiriman";
         } else {
             return "fail-cancel-permintaan-pengiriman";

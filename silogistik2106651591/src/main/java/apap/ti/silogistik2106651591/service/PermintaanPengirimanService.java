@@ -11,7 +11,7 @@ public interface PermintaanPengirimanService {
 
     PermintaanPengiriman getPermintaanPengirimanById(Long id);
 
-    void deletePermintaanPengiriman(PermintaanPengiriman permintaanPengiriman);
+    void cancelPermintaanPengiriman(PermintaanPengiriman permintaanPengiriman);
 
     Long getCountPermintaanPengiriman();
 }

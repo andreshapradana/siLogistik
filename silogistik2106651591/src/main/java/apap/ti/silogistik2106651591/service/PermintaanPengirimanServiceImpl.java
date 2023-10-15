@@ -82,8 +82,9 @@ public class PermintaanPengirimanServiceImpl implements PermintaanPengirimanServ
     }
 
     @Override
-    public void deletePermintaanPengiriman(PermintaanPengiriman permintaanPengiriman) {
-        permintaanPengirimanDb.delete(permintaanPengiriman);
+    public void cancelPermintaanPengiriman(PermintaanPengiriman permintaanPengiriman) {
+        permintaanPengiriman.setCancelled(true);
+        permintaanPengirimanDb.save(permintaanPengiriman);
     }
 
     @Override

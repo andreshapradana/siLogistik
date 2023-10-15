@@ -22,4 +22,5 @@ public class ReadPermintaanPengirimanResponseDTO {
     private int biayaPengiriman;
     private List<PermintaanPengirimanBarang> listPermintaanPengirimanBarang;
     private List<Long> listTotalHarga;
+    private boolean isCancelled;
 }
